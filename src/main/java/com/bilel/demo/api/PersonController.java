@@ -4,8 +4,11 @@ import com.bilel.demo.model.Person;
 import com.bilel.demo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("api/v1/person")
 @RestController
 public class PersonController {
 
@@ -16,7 +19,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public void addPerson(Person person){
+    public void addPerson(@RequestBody Person person){
         personService.addPerson(person);
     }
 }
