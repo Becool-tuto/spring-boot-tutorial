@@ -35,11 +35,26 @@ public class PersonDaoImpl implements PersonDao{
 
     @Override
     public int deletePerson(UUID id) {
-        return 0;
+       Optional<Person> person = getPersonById(id);
+       if(person.isPresent()){
+           DB.remove(person);
+           return 1;
+       }
+       return 0;
+
     }
 
     @Override
-    public int updatePerson(UUID id) {
+    public int updatePerson(UUID id,Person update) {
+        Optional<Person> personMayBe = getPersonById(id);
+        personMayBe.map(person -> {
+            int indexOfPersonToUpdate = DB.indexOf(person);
+            if(indexOfPersonToUpdate >=0){
+                DB.set(indexOfPersonToUpdate,new Person(id,update.getName()));
+                return 1;
+            }
+           return 0;
+        }).orElse(0);
         return 0;
     }
 }

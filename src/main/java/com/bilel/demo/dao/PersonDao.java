@@ -20,6 +20,6 @@ public interface PersonDao {
 
     public int deletePerson(UUID id);
 
-    public int updatePerson(UUID id);
+    public int updatePerson(UUID id,Person person);
 
 }
