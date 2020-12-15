@@ -28,7 +28,8 @@ public class PersonController {
         return personService.getPersons();
     }
 
-    public Person getPersonById(UUID id){
+    @GetMapping(path = "{id}")
+    public Person getPersonById(@PathVariable("id") UUID id){
         return personService.findPersonById(id).orElse(null);
     }
 }
