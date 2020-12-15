@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 //we use annotation to instantiate beans
@@ -23,5 +24,22 @@ public class PersonDaoImpl implements PersonDao{
     @Override
     public List<Person> getPersons() {
         return DB;
+    }
+
+    @Override
+    public Optional<Person> getPersonById(UUID id) {
+        return DB.stream()
+                .filter(person->id.equals(person.getId()))
+                .findFirst();
+    }
+
+    @Override
+    public int deletePerson(UUID id) {
+        return 0;
+    }
+
+    @Override
+    public int updatePerson(UUID id) {
+        return 0;
     }
 }

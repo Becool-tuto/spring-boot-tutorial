@@ -3,6 +3,7 @@ package com.bilel.demo.dao;
 import com.bilel.demo.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface PersonDao {
@@ -14,5 +15,11 @@ public interface PersonDao {
     }
 
     List<Person> getPersons();
+
+    Optional<Person> getPersonById(UUID id);
+
+    public int deletePerson(UUID id);
+
+    public int updatePerson(UUID id);
 
 }
